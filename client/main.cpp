@@ -1,4 +1,5 @@
 #include <iostream>
+#include <conio.h>
 #include <config.h>
 #include <Singleton.h>
 #include <CommandLine.h>
@@ -36,7 +37,7 @@ int main(int argc, char* argv[])
         std::cerr << "Exception: " << e.what() << std::endl;
     }
 
-    system("pause");
+    getch();
     return 0;
 }
 

@@ -2,7 +2,7 @@
 #include <unordered_map>
 #include <string>
 
-#include "Singleton.h"
+#include "singleton.h"
 
 class CommandLineInfo
 {
