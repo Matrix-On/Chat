@@ -1,4 +1,4 @@
-#include "strOperations.h"
+#include "StrOperations.h"
 #include <stdarg.h>
 
 

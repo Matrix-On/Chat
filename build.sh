@@ -23,20 +23,18 @@ cmake --build . --config Release
 cd ..
 
 # Создаем директорию exe
-mkdir -p exe/client
-mkdir -p exe/server
+mkdir -p exe/client1
+mkdir -p exe/server1
 
 # Копируем исполняемые файлы и библиотеки для клиента
-cp build/Release/client.exe exe/client/
-cp openssl/bin/*.dll exe/client/
-cp keys/rootca.crt exe/client/
+cp build/client exe/client1/
+cp keys/rootca.crt exe/client1/
 
 # Копируем исполняемые файлы и библиотеки для сервера
-cp build/Release/server.exe exe/server/
-cp openssl/bin/*.dll exe/server/
-cp keys/user.crt exe/server/
-cp keys/user.key exe/server/
-cp keys/dh2048.pem exe/server/
+cp build/server exe/server1/
+cp keys/user.crt exe/server1/
+cp keys/user.key exe/server1/
+cp keys/dh2048.pem exe/server1/
 
 # Копируем остальные файлы из папки keys
 cp keys/* exe/
@@ -45,14 +43,14 @@ cp keys/* exe/
 IP_TEMP=$(ip addr show | grep "inet " | grep -v "127.0.0.1" | awk '{print $2}' | cut -d "/" -f 1)
 
 # Генерируем скрипты для запуска клиентов
-echo "exe/client/client.exe -nick=hero -pport=54321 -sport=12345 -sip=$IP_TEMP" > exe/client1.sh
-echo "exe/client/client.exe -nick=unkn -pport=54322 -sport=12345 -sip=$IP_TEMP" > exe/client2.sh
-echo "exe/client/client.exe -nick=slap -pport=54323 -sport=12345 -sip=$IP_TEMP" > exe/client3.sh
+echo "client1/client -nick=hero -pport=54321 -sport=12345 -sip=$IP_TEMP" > exe/client1.sh
+echo "client1/client -nick=unkn -pport=54322 -sport=12345 -sip=$IP_TEMP" > exe/client2.sh
+echo "client1/client -nick=slap -pport=54323 -sport=12345 -sip=$IP_TEMP" > exe/client3.sh
 
 # Генерируем скрипт для запуска сервера
-echo "exe/server/server.exe -sport=12345" > exe/server.sh
+echo "server1/server -sport=12345" > exe/server.sh
 
 # Даем права на выполнение скриптам
 chmod +x exe/*.sh
-chmod +x exe/client/*.exe
-chmod +x exe/server/*.exe
+chmod +x exe/client1/client
+chmod +x exe/server1/server
